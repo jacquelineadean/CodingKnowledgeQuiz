@@ -1,9 +1,16 @@
 // HTML Elements
+var quizStart = document.querySelector("#quiz");
+var highScoreSave = document.querySelector("#highScores");
+var timer = document.querySelector("#time");
+
 var startButton = document.querySelector("#start");
+
+var timeLeft = 100;
+var questionIndex = 0;
 
 function startQuiz() {
     //start time function
-    
+
     //set text content of time on DOM
 
     // call getQuestion function
