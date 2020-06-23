@@ -1,0 +1,13 @@
+.container {
+    text-align: center;
+    margin: auto;
+    width: 900px;
+}
+#highScores {
+    text-align: left; 
+    padding-left: 10%; 
+    padding-top: 10px;
+}
+#time {
+    text-align: center;    
+}
