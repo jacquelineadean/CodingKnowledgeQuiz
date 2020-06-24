@@ -1,7 +1,13 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 .container {
     text-align: center;
     margin: auto;
     width: 900px;
+}
+.hide {
+    display: none;
 }
 #highScores {
     text-align: left; 
