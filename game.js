@@ -23,11 +23,7 @@ function startQuiz() {
     quizChallenge.classList.add("hide");
     currentQuestionIndex = 0;
     questContainerEl.classList.remove("hide");
-    //start time function
     startTimer();
-    //set text content of time on DOM
-
-    // call getQuestion function
     getQuestion();
 };
 
@@ -38,7 +34,7 @@ function startTimer(duration, display) {
         
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = seconds;
+        display.textContent = seconds; 
 
         if (--timer < 0) {
             timer = duration;
@@ -60,7 +56,6 @@ function getQuestion() {
 
 function showQuestion(questionEl) {
     document.getElementById("question").innerHTML = questions[questionEl].title;
-    console.log(questionEl);
     questions[questionEl].choices.forEach((answer, i) => {
         const button = document.createElement("button")
         button.innerText = questions[questionEl].choices[i]
@@ -75,16 +70,16 @@ function showQuestion(questionEl) {
 };
 
 function resetState() {
-    // nextButton.classList.add("hide");
     while (document.getElementById("answerButtons").firstChild) {
         document.getElementById("answerButtons").removeChild
         (document.getElementById("answerButtons").firstChild)
     }
 }
 
-function checkAnswer() {
+function checkAnswer(event) {
+    event.preventDefault();
     if (event.target.textContent === "click") {
-        score++
+        showQuestion()
     } else {
         timer -= 20;
     }
@@ -93,13 +88,6 @@ function checkAnswer() {
     } else {
         endGame();
     }
-    // const selectedButton = questions[questionEl].choices[i]
-    // const answer = selectedButton.dataset.answer
-    // setStatusClass(document.body, answer)
-    // Array.from(answerButtonsElement.children).forEach(button => {
-    //     setStatusClass(button, button.dataset.answer)
-    // })
-
 };
 
 function setStatusClass(element, answer){

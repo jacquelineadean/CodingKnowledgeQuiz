@@ -6,6 +6,9 @@
     margin: auto;
     width: 900px;
 }
+.header-right {
+    text-align: right;
+}
 .hide {
     display: none;
 }

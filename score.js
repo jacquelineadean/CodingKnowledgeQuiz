@@ -1,31 +1,37 @@
-var seconds = document.getElementById("timeRemaining").textContent;
-var countdown = setInterval(function(){
-    seconds--;
-    document.getElementById("timeRemaining").textContent = seconds;
-    if (seconds <= 0) clearInterval(countdown);
-}, 100);
+const scoresSavedEl = document.querySelector("#scoresSaved");
+
+var userInitials;
+var highScores;
+
+function saveHighScores() {
+    var userInitials = localStorage.getItem("userInitials");
+    var highScores = localStorage.getItem("highScores");
+
+    if (!userInitials || highScores){
+        return;
+    }
+    userInitialsSpan.textContent = email;
+    userHighScoresSpan.textContent = highScores;
+}
 
 
 
+saveScoreButton.addEventListener("click", function(event){
+    event.preventDefault();
 
+    var userInitials = document.querySelector("#userInitials").value;
+    var highScores = document.querySelector("#highScores").value;
 
-// // var count = 100;
-// var timeRemainingEl = document.querySelector("#timeRemaining");
-
-
-// var x = setInterval(function(){
-//     var count = 100;
+    if (userInitials === "") {
+        displayMessage("error", "Initials cannot be blank");
+    } else {
+        displayMessage("success","Saved successfully");
     
-//     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-//     document.querySelector("#timeRemaining").innerHTML = seconds;
+        localStorage.setItem("Initials", userInitials);
+        localStorage.setItem("highScores", highScores);
+        saveHighScores();
+    }
+});
 
-// })
 
 
-// function wrongAnswerPenalty() {
-//     if  
-// }
-
-// timeRemainingEl.addEventListener("click", function(){
-
-// });
