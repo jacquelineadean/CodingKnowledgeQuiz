@@ -20,7 +20,7 @@ questContainerEl.addEventListener("click", checkAnswer);
 
 
 function startQuiz() {
-    startButton.classList.add("hide");
+    quizChallenge.classList.add("hide");
     currentQuestionIndex = 0;
     questContainerEl.classList.remove("hide");
     //start time function
@@ -83,12 +83,22 @@ function resetState() {
 }
 
 function checkAnswer() {
-    const selectedButton = e.target
-    const answer = selectedButton.dataset.answer
-    setStatusClass(document.body, answer)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.answer)
-    })
+    if (event.target.textContent === "click") {
+        score++
+    } else {
+        timer -= 20;
+    }
+    if (timer > 0 && count !== questions.length) {
+        showQuestion();
+    } else {
+        endGame();
+    }
+    // const selectedButton = questions[questionEl].choices[i]
+    // const answer = selectedButton.dataset.answer
+    // setStatusClass(document.body, answer)
+    // Array.from(answerButtonsElement.children).forEach(button => {
+    //     setStatusClass(button, button.dataset.answer)
+    // })
 
 };
 
@@ -99,6 +109,27 @@ function setStatusClass(element, answer){
     } else {
         text = "Wrong"
         timer.setSeconds(timer.getSeconds() - 10);
+    }
+}
+
+function endGame() {
+    clearInterval(timerEl);
+    saveScore();
+    countdown++;
+    timerEl.textContent= countdown;
+    if (countdown !== 0) {
+        questionEl.textContent = "Your score is ${countdown} !";
+    } else {
+        questionEl.textContent = "Out of time. Your score is ${countdown} !";
+    }
+    answerBtnsEl.setAttribute("style", "display:none");
+}
+
+function saveScore() {
+    if (highScoreSave.getElementsByClassName.display === "" || highScoreSave.getElementsByClassName.display === "none") {
+        highScoreSave.getElementsByClassName.display = "block";
+    } else {
+        highScoreSave.style.display = "none";
     }
 }
     
